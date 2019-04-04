@@ -1,0 +1,4 @@
+<i-modal  visible="{{ authVisible }}" show-ok="{{false}}" show-cancel="{{false}}">
+    <text>我们需要您的授权以进行下一步操作</text>
+    <i-button size="small" open-type="getUserInfo" type="primary" bindgetuserinfo="getUserInfo">授权</i-button>
+</i-modal>

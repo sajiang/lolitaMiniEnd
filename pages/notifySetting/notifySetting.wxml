@@ -1,0 +1,91 @@
+<wux-calendar id="wux-calendar" />
+<view>
+  <view class='flexBoxCenter pageMargin'>
+    <view class='font20 flex1 grey flexBoxCenter spaceBetween'>
+      <text>尾款开始提醒</text>
+      <i-switch value="{{switch1}}" size="small" data-name='switch1'  bind:change="onSwitchChange"></i-switch>
+    </view>
+    <view class='placeHolder'></view>
+    <view class='font20 flex1 grey flexBoxCenter spaceBetween'>
+      <text>尾款结束提醒</text>
+      <i-switch value="{{switch2}}" size="small" data-name='switch2' bind:change="onSwitchChange"></i-switch>
+    </view>
+  </view>
+  <view class='selectTime flexBoxCenter font30'>
+    <view class='flex1'>
+      <view class='flexBoxCenter spaceBetween'>
+        <view catchtap='openCalendar' data-name="startDate" class='{{startDate.length>0?"" :"grey"}}'>{{startDate.length>0?startDate :"选择日期"}}</view>
+        <picker 
+          mode="time"
+          value="{{time}}"
+          bindchange="bindTimeChange"
+        >
+          <view class="picker {{time?'' :'grey'}}">
+            {{time?time:"--:--"}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class='placeHolder textCenter bold font48'>-</view>
+    <view class='flex1'>
+      <view class='flexBoxCenter spaceBetween'>
+        <view catchtap='openCalendar' data-name="endDate" class='{{endDate.length>0?"" :"grey"}}'>{{endDate.length>0?endDate :"选择日期"}}</view>
+        <picker 
+          mode="time"
+          value="{{time}}"
+          bindchange="bindTimeChange"
+        >
+          <view class="picker {{time?'' :'grey'}}">
+            {{time?time:"--:--"}}
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class='items'>
+    <view wx:for="{{7}}" class='flexBoxCenter item'>
+      <i-icon class='mgr30' type="add-circle" size='30'/>
+      <view>
+        <view>
+          <text class='font24 grey'>衬衣</text>
+          <text class='badge'>1</text>
+        </view>
+        <view class='font30'>定<text class='underline'>100</text>尾<text class='underline'>230</text></view>
+      </view>
+    </view>
+  </view>
+  <view class='pageMargin flexBoxCenter spaceBetween'>
+    <view class='font30 darkPink bold'>清空</view>
+    <view class='font30 darkPink bold' catchtap='showEditPrice'>新增类别</view>
+  </view>
+  <view class='pageMargin mgt40 flexBoxCenter'>
+    <view class='mgr50'>
+      <view class='font48 bold'>150</view>
+      <view class='font24 grey'>总定金</view>
+    </view>
+    <view   class='mgr50'>
+      <view class='font48 bold'>260</view>
+      <view class='font24 grey'>总尾款</view>
+    </view>
+    <view>
+      <view class='font48 bold darkPink'>0</view>
+      <view class='font24 grey'>邮费</view>
+    </view>
+  </view>
+  <view class='fixedBottom'>
+    <view class='cancel '>
+      <view class='text'>
+        <i-icon type="return" />
+        <text class='grey'>取消</text>
+      </view>
+      
+    </view>
+    <view class='sureBtn'><text>确定</text></view>
+  </view>
+</view>
+<i-modal visible="{{ editPriceVisible }}" bind:ok="setPrice" bind:cancel="hideEditPrice">
+   <input placeholder='类别' ></input>
+   <input placeholder='定金' type='digit'></input>
+   <input placeholder='尾款' type='digit'></input>
+</i-modal>

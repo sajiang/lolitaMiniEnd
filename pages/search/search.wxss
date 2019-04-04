@@ -1,0 +1,12 @@
+.searchWrap{
+  margin: 30rpx 60rpx;
+  padding: 0 50rpx;
+  background-color: #f7e6eb;
+  height: 98rpx;
+  border-radius: 49rpx;
+}
+.searchWrap .search{
+  width: 46rpx;
+  height: 46rpx;
+  margin-right: 36rpx;
+}

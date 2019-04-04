@@ -1,0 +1,10 @@
+.top{
+  padding:40rpx 50rpx;
+}
+.top .noteIcon{
+  width: 80rpx;
+  height: 80rpx;
+}
+.noteList{
+  padding:40rpx 50rpx 0 50rpx;
+}

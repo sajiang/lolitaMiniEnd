@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='flexBox top'>
+    <view catchtap='naviToMyCollection' class='naviBtn'>
+      <view ><image class='icon' src='../../imgs/star.png'></image></view>
+      <view class='font48 bold'>11</view>
+      <view class='font24 grey'>收藏</view>
+    </view>
+    <view  catchtap='naviToNote' class='flex1'>
+      <view>
+        <view><image class='icon' src='../../imgs/note.png'></image></view>
+        <view class='font48 bold'>13</view>
+        <view class='font24 grey'>备忘</view>
+      </view>
+    </view>
+    <view class='searchWrap' catchtap='naviToSearch'>
+      <image class='search' src='../../imgs/search.png'></image>
+    </view>
+  </view>
+  <view class='opItem' wx:for="{{newList}}" wx:for-item="op" wx:key="{{index}}" >
+    <view class='head' catchtap='naviToDetail'>
+      <view class='flexBoxCenter'>
+        <view class='flex1'>
+          <view class='bold font48'>{{op.name}}</view>
+          <view class='grey font30'>{{op.storeName}}</view>
+        </view>
+      </view>
+      <view class='flexBoxCenter mgt20'>
+        <image class='icon' src='../../imgs/eye.png'></image>
+        <text class='font24 grey mgr30'>1334</text>
+        <image class='icon' src='../../imgs/starNum.png'></image> 
+        <text class='font24 grey'>13</text>
+      </view>
+    </view>
+    <view class='flexBox mgt20'>
+      <view class='flex1 imgContainer' vertical="true" data-idx='{{index}}' bindchange="switchType">
+        <view>
+          <swiper circular="true" indicator-dots="true" indicator-color="#999999" indicator-active-color="#FFFFFF" class='flex1 imgContainer' >
+            <swiper-item  wx:for="{{op.type[op.current].imgs}}" wx:for-item="img"  wx:key="{{index}}">
+              <image catchtap='preview' mode='aspectFill' class='img' src="{{img}}"></image>
+              </swiper-item>
+          </swiper>
+        </view>
+      </view>
+      <view class='rightSide'>
+        <view class='tags'>
+          <view wx:for="{{op.type}}" wx:for-item="type" wx:for-index="idx" wx:key="{{idx}}" class='tag font28 flexBoxCenter {{idx==op.current?"lightPink":""}}' catchtap='changeCurrentType' data-op-idx='{{index}}' data-idx='{{idx}}'>
+            <text wx:if="{{idx==op.current}}" class='pinkDot'></text>
+            <text wx:else class='whiteDot'></text>
+            <text>{{type.name}}</text>
+          </view>
+        </view>
+        <view class='operation'  >
+          <image class='midIcon' data-idx='{{index}}' catchtap='collect' src="{{op.isCollect?'../../imgs/starOn.png':'../../imgs/starOff.png'}}"></image>
+          <image class='midIcon' data-idx='{{index}}' catchtap='note' src="{{op.isNote?'../../imgs/noteOn.png':'../../imgs/noteOff.png'}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<auth id="isAuth"></auth>

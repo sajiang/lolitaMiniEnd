@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "提醒设置",
+  "usingComponents": {
+    "wux-calendar": "../../utils/plugin/wux/calendar/index",
+    "i-switch": "../../utils/plugin/iview/switch/index",
+    "i-icon": "../../utils/plugin/iview/icon/index",
+    "i-modal": "../../utils/plugin/iview/modal/index"
+  }
+}

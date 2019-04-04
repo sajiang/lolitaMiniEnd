@@ -1,0 +1,4 @@
+<view class='searchWrap flexBoxCenter'>
+  <image class='search' src='../../imgs/search.png'></image>
+  <input class='font30' placeholder-style="color:#999999" placeholder='输入名称/店名/标签'></input>
+</view>

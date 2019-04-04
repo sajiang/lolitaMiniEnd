@@ -1,0 +1,76 @@
+
+<view class='fixTab' >
+  <view wx:for="{{detail.type}}" wx:key="{{index}}" class='tabTitle {{index==current?"checkedTab":""}}' catchtap='changeCurrent' data-idx="{{index}}">
+    {{item.name}}
+  </view>
+</view>
+<view wx:for="{{detail.type}}" class='{{index==current?"showDetail":"hideDetail"}}'>
+  <scroll-view class='detail'>
+    <view class='textCenter mgt20'><image class='flowers' src='../../imgs/flowers.png'></image></view>
+    <view class='prices'>
+      <view class='font20 grey'>定金</view>
+      <view class='lightPink font36'>¥100</view>
+      <view class='diagonal'></view>
+      <view class='font20 grey'>尾款</view>
+      <view class='lightPink font36'>¥100</view>
+      <view class='diagonal'></view>
+      <view class='font20 grey'>正价</view>
+      <view class='lightPink font36'>¥220</view>
+    </view>
+    <view class='textCenter font20 grey'>
+      <view >
+        面料：文段布
+        <text class='line'>|</text>
+        里料：文段布
+      </view>
+      <view>黑/黄/红</view>
+      <view>冬装/高领/加绒</view>
+    </view>
+    <view class='mgt20'>
+      <image lazy-load="true" wx:for="{{detail.type[current].imgs}}" class='imgs' mode='widthFix' src='{{item}}'></image>
+    </view>
+  </scroll-view>
+</view>
+<view class='bottom'>
+  <view class='titleBar'>
+    <view class='textCenter' catchtap='changeBottomDis'><text class='controlBar'></text></view>
+    <view class='title'>
+      <view class='flex1'>
+        <view class='font48 bold'>{{detail.name}}</view>
+        <view class='grey font30 mgt10'>{{detail.storeName}}</view>
+      </view>
+      <view class='operation'  >
+          <image class='midIcon' data-idx='{{index}}' catchtap='collect' src="{{detail.isCollect?'../../imgs/starOn.png':'../../imgs/starOff.png'}}"></image>
+          <image class='midIcon' data-idx='{{index}}' catchtap='note' src="{{detail.isNote?'../../imgs/noteOn.png':'../../imgs/noteOff.png'}}"></image>
+        </view>
+    </view>
+  </view>
+  <view class=" {{showBottom?'info':'hideInfo'}}">
+    <view class='flexBoxCenter'>
+      <image class='icon' src='../../imgs/eye.png'></image>
+      <text class='font24 grey mgr30'>1334</text>
+      <image class='icon' src='../../imgs/starNum.png'></image> 
+      <text class='font24 grey'>13</text>
+    </view>
+    <view class='flexBox time'>
+      <view class='flexBox '>
+        <view class='grey font24 mgr10'>上新</view>
+        <view class='diagonal mgr10'></view>
+        <view class='font42 mgt20'>11.24~12.07</view>
+      </view>
+      <view class='flex1'></view>
+      <view class='flexBox '>
+        <view class='grey font24 mgr10'>尾款</view>
+        <view class='diagonal mgr10'></view>
+        <view class='font42 mgt20 darkPink'>11.24~12.07</view>
+      </view>
+    </view>
+    <view class='flexBoxCenter font28 grey mgt20'>
+      <view class='mgr10'>不包邮</view>
+      <view class='mgr10'>|</view>
+      <view>画手伸二先生 </view>
+    </view>
+    <view class='mgt20 font20 grey'>加百列的坟墓是小店刚开业的时候就考虑发售的一款设计，背后的脊椎骨，胸前的羊头骷髅和整体漆黑油量的质感凸显了神秘与高雅。马甲是可以搭配各种搞死裙子的百搭单品，还有很多打开方式等待开发~</view>
+    <view class='font20 grey mgt10'>预约满800套即手动下架定金。</view>
+  </view>
+</view>

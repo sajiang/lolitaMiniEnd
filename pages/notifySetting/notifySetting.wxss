@@ -1,0 +1,72 @@
+.pageMargin{
+  margin-left:  60rpx;
+  margin-right:  60rpx;
+}
+.placeHolder{
+  width: 100rpx;
+}
+.selectTime{
+  justify-content: space-between;
+  margin: 0 60rpx;
+  border-bottom: 2rpx solid black
+}
+.items{
+  margin: 60rpx;
+}
+.item{
+  width: 50%;
+  display: inline-flex;
+}
+.trans{
+  transform: rotate(45deg);
+}
+.badge{
+  padding: 0 5px;
+  line-height: 24rpx;
+  background: #ff3b76;
+  color: white;
+  font-size: 20rpx;
+  width: 34rpx;
+  height: 24rpx;
+  border-radius: 24rpx;
+  margin-left: 10rpx;
+}
+.underline{
+  text-decoration: underline;
+}
+.fixedBottom{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+.cancel{
+  flex: 1;
+  height: 125rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 24rpx;
+  position: relative;
+}
+.cancel .text{
+  position: absolute;
+  left: 95rpx;
+  top: 52rpx;
+}
+.sureBtn{
+  background: #ffa4ce;
+  color: white;
+  height: 125rpx;
+  width: 328rpx;
+  border-top-left-radius: 128rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 24rpx;
+  position: relative;
+}
+.sureBtn text{
+  position: absolute;
+  left: 143rpx;
+  top: 52rpx;
+}

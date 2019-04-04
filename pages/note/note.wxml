@@ -1,0 +1,15 @@
+<view class='top'>
+  <view><image class='noteIcon' src='../../imgs/noteOff.png'></image></view>
+  <view class='flexBoxCenter spaceBetween'>
+    <text class='font48'>我的备忘</text>
+    <i-icon type="setup" size="24"/> 
+  </view>
+  <view class='mgt40 flexBoxCenter spaceBetween'>
+    <text class='font24 bold '>总计：356554元</text>
+    <view>
+      <text class='font24 bold darkPink' catchtap='showSort'>{{sortActions[sortType].label}}</text>
+      <i-icon type="unfold" color="#ffa4ce"/>
+    </view>
+  </view>
+</view>
+<i-action-sheet visible="{{ visible_sort }}" actions="{{ sortActions }}"  bind:click="changeSortType" />

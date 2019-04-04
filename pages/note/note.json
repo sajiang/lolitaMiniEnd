@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-action-sheet": "../../utils/plugin/iview/action-sheet/index",
+    "i-icon": "../../utils/plugin/iview/icon/index"
+  }
+}
