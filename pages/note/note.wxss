@@ -1,5 +1,5 @@
 .top{
-  padding:40rpx 50rpx;
+  padding:40rpx 50rpx 20rpx 50rpx;
 }
 .top .noteIcon{
   width: 80rpx;
@@ -7,4 +7,36 @@
 }
 .noteList{
   padding:40rpx 50rpx 0 50rpx;
+}
+.sepreateLine{
+  height: 20rpx;
+  background-color: rgb(230,230,230);
+}
+.table{
+  overflow-x: scroll;
+}
+.tr{
+  font-size: 24rpx;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.td{
+  padding: 15rpx;
+  display: inline-block;
+  white-space: normal;
+}
+.time{
+  width: 120rpx;
+}
+.name{
+  width: 150rpx;
+}
+.store{
+  width: 150rpx;
+}
+.money{
+  width: 80rpx;
+}
+.transFee{
+  width: 70rpx;
 }

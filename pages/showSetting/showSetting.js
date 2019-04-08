@@ -1,15 +1,22 @@
-// pages/note/note.js
+// pages/showSetting/showSetting.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    visible_sort:false,
-    sortType:0,
-    sortActions: [
-      { name: "尾款开始时间排序", label:"尾款开始时间"},
-      { name: "尾款结束时间排序", label: "尾款结束时间" }]
+    checkBox:false,
+    checkBoxLine:true,
+    opName:true,
+    storeName:false,
+    money1:false,
+    money2:true,
+    transFee:false,
+    money1StartTime: false,
+    money1EndTime: false,
+    money2StartTime: true,
+    money2EndTime:false,
+    detail:false,
   },
 
   /**
@@ -67,20 +74,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  showSort(){
+  onSwitchChange(event) {
     this.setData({
-      visible_sort:true
+      [event.currentTarget.dataset.name]: event.detail.value
     })
   },
-  changeSortType({ detail }) {
-    this.setData({
-      sortType: detail.index,
-      visible_sort: false
-    })
-  },
-  naviToShowSetting(){
-    wx.navigateTo({
-      url: '../showSetting/showSetting',
-    })
-  }
 })

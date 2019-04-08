@@ -2,7 +2,7 @@
   <view><image class='noteIcon' src='../../imgs/noteOff.png'></image></view>
   <view class='flexBoxCenter spaceBetween'>
     <text class='font48'>我的备忘</text>
-    <i-icon type="setup" size="24"/> 
+    <i-icon type="setup" size="24" catchtap='naviToShowSetting'/> 
   </view>
   <view class='mgt40 flexBoxCenter spaceBetween'>
     <text class='font24 bold '>总计：356554元</text>
@@ -12,4 +12,32 @@
     </view>
   </view>
 </view>
+<view class='sepreateLine'></view>
+<view class='table' >
+  <view class='tr nameColumn font20'>
+    <view class='td time'>时间</view>
+    <view class='td name'>名字</view>
+    <view class='td store'>店家</view>
+    <view class='td money'>定金</view>
+    <view class='td money'>尾款</view>
+    <view class='td transFee'>邮费</view>
+  </view>
+  <view class='tr'>
+    <view class='td time'>03-10</view>
+    <view class='td name'>悦奈合作款</view>
+    <view class='td store'>仲夏物语</view>
+    <view class='td money'>160</view>
+    <view class='td money'>450</view>
+    <view class='td transFee'>10</view>
+  </view>
+  <view class='tr'>
+    <view class='td time'>03-10</view>
+    <view class='td name'>糖果纸</view>
+    <view class='td store'>南十字宇宙经销总部</view>
+    <view class='td money'>160</view>
+    <view class='td money'>450.6</view>
+    <view class='td transFee'>10</view>
+  </view>
+</view >
+
 <i-action-sheet visible="{{ visible_sort }}" actions="{{ sortActions }}"  bind:click="changeSortType" />

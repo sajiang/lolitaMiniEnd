@@ -5,7 +5,8 @@
     "pages/search/search",
     "pages/dressDetail/dressDetail",
     "pages/note/note",
-    "pages/notifySetting/notifySetting"
+    "pages/notifySetting/notifySetting",
+    "pages/showSetting/showSetting"
   ],
   "window": {
     "backgroundTextStyle": "light",

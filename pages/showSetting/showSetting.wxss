@@ -1,0 +1,8 @@
+.line{
+  margin: 0 40rpx;
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: #eee 1px solid;
+  font-size: 30rpx;
+}
