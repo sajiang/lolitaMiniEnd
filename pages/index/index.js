@@ -1,62 +1,51 @@
 //index.js
 //获取应用实例
+const util = require("../../utils/util.js")
 const app = getApp();
 Page({
   data: {
-    newList:[{
-      current:0,
-      isCollect: false,
-      isNote: true,
-      name:"加百列的坟墓",
-      storeName:"狐步舞Foxtrot洋装店",
-      type:[{
-        name:"jsk+马甲set",
-        imgs: ["../../https/11.jpg", "../../https/11.jpg", "../../https/11.jpg"]
-      }, {
-          name: "马甲",
-          imgs: ["../../https/11.jpg", "../../https/11.jpg", "../../https/11.jpg"]
-        }, {
-          name: "手袖",
-          imgs: ["../../https/11.jpg", "../../https/11.jpg"]
-        }, {
-          name: "设计图",
-          imgs: ["../../https/41.jpg", "../../https/41.jpg"]
-        }]
-    },
-      {
-        current: 0,
-        isCollect:true,
-        isNote: false,
-        name: "黄金之时",
-        storeName: "RabbitPalace洋装馆",
-        type: [{
-          name: "jsk",
-          imgs: ["../../https/223.jpg", "../../https/223.jpg"]
-        }, {
-          name: "op",
-            imgs: ["../../https/223.jpg", "../../https/223.jpg", "../../https/223.jpg", "../../https/223.jpg"]
-        }, {
-          name: "姬袖衬衫",
-            imgs: ["../../https/233.jpg", "../../https/233.jpg", "../../https/233.jpg", "../../https/233.jpg"]
-        }, {
-          name: "边夹",
-            imgs: ["../../https/241.jpg"]
-          },{
-            name: "KC",
-            imgs: ["../../https/241.jpg"]
-          }, {
-          name: "设计图",
-            imgs: ["../../https/253.jpg", "../../https/253.jpg", "../../https/253.jpg"]
-          }, {
-            name: "饼图",
-            imgs: ["../../https/261.jpg", "../../https/261.jpg", "../../https/261.jpg", "../../https/261.jpg"]
-          }]
-      },]
+    pageIndex:1,
+    newList:[]
   },
-  preview(){
-      wx.previewImage({
-        current: '../../https/241.jpg', // 当前显示图片的http链接
-        urls: ["../../https/11.jpg", "../../https/241.jpg", "../../https/261.jpg", "../../https/261.jpg"] // 需要预览的图片http链接列表
+  onLoad(){
+    this.getList();
+  },
+  onReachBottom: function () {
+    this.getList();
+  },
+  getList(){
+    wx.request({
+      url: util.url +'Product/List', 
+      data: {
+        page: this.data.pageIndex,
+        pageSize: '3'
+      },
+      success:(res)=> {
+        if(res.data.code==0){
+          let list = res.data.data.list;
+          for(let item of list){
+            item.current=0;
+          }
+          this.setData({
+            newList: this.data.newList.concat(list),
+            pageIndex: ++this.data.pageIndex
+          });
+        }
+      }
+    })
+    
+  },
+  preview(e){
+    let idx=e.currentTarget.dataset.opIdx;
+    let urls=[];
+    for (let item of this.data.newList[idx].items){
+      for (let img of item.itemimages){
+        urls.push(img.imageurl)
+      }
+    }
+    wx.previewImage({
+      current: e.currentTarget.dataset.curImg, // 当前显示图片的http链接
+      urls // 需要预览的图片http链接列表
     })
   },
   //事件处理函数

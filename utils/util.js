@@ -15,5 +15,6 @@ const formatNumber = n => {
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  url:"http://192.168.2.107:5001/api/"
 }
