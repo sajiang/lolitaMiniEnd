@@ -16,12 +16,12 @@
       <view class='flexBoxCenter spaceBetween'>
         <view catchtap='openCalendar' data-name="startDate" class='{{startDate.length>0?"" :"grey"}}'>{{startDate.length>0?startDate :"选择日期"}}</view>
         <picker 
-          mode="time"
-          value="{{time}}"
+          mode="time" data-name='time1'
+          value="{{time1}}"
           bindchange="bindTimeChange"
         >
-          <view class="picker {{time?'' :'grey'}}">
-            {{time?time:"--:--"}}
+          <view class="picker {{time1?'' :'grey'}}">
+            {{time1?time1:"--:--"}}
           </view>
         </picker>
       </view>
@@ -31,12 +31,12 @@
       <view class='flexBoxCenter spaceBetween'>
         <view catchtap='openCalendar' data-name="endDate" class='{{endDate.length>0?"" :"grey"}}'>{{endDate.length>0?endDate :"选择日期"}}</view>
         <picker 
-          mode="time"
-          value="{{time}}"
+          mode="time" data-name='time2'
+          value="{{time2}}"
           bindchange="bindTimeChange"
         >
-          <view class="picker {{time?'' :'grey'}}">
-            {{time?time:"--:--"}}
+          <view class="picker {{time2?'' :'grey'}}">
+            {{time2?time2:"--:--"}}
           </view>
         </picker>
       </view>
@@ -44,32 +44,43 @@
   </view>
 
   <view class='items'>
-    <view wx:for="{{7}}" class='flexBoxCenter item'>
-      <i-icon class='mgr30' type="add-circle" size='30'/>
+    <view wx:for="{{detailInfo.items}}" class='flexBoxCenter item' >
+      <i-icon class='mgr10' type="add-circle" size='20' data-idx='{{index}}' catchtap="addItemNum"/>
       <view>
         <view>
-          <text class='font24 grey'>衬衣</text>
-          <text class='badge'>1</text>
+          <text class='font24 grey'>{{item.item_name}}</text>
+          <text wx:if="{{item.reserve_num>0}}" class='badge'>{{item.reserve_num}}</text>
         </view>
-        <view class='font30'>定<text class='underline'>100</text>尾<text class='underline'>230</text></view>
+        <view class='font30'>定金{{item.earnest_money}} 尾款{{item.tail_money}}</view>
+      </view>
+    </view>
+    <view  class='flexBoxCenter item' wx:if="{{detailInfo.newitem.reserve_num>0}}">
+      <i-icon class='mgr10' type="add-circle" size='20' data-idx='{{index}}' catchtap="addNewItemNum"/>
+      <view catchtap='showEditPrice'>
+        <view>
+          <text class='font24 grey'>{{detailInfo.newitem.item_name}}</text>
+          <text wx:if="{{detailInfo.newitem.reserve_num>0}}" class='badge'>{{detailInfo.newitem.reserve_num}}</text>
+        </view>
+        <view class='font30'>定金{{detailInfo.newitem.earnest_money}} 尾款{{detailInfo.newitem.tail_money}}</view>
       </view>
     </view>
   </view>
+  
   <view class='pageMargin flexBoxCenter spaceBetween'>
     <view class='font30 darkPink bold'>清空</view>
     <view class='font30 darkPink bold' catchtap='showEditPrice'>新增类别</view>
   </view>
   <view class='pageMargin mgt40 flexBoxCenter'>
     <view class='mgr50'>
-      <view class='font48 bold'>150</view>
+      <view class='font48 bold'><input class='moneyInput' bindfocus="clearZero" bindinput='bindInput' type='digit' data-bindvalue='detailInfo.total_deposit' value="{{detailInfo.total_deposit}}"/></view>
       <view class='font24 grey'>总定金</view>
     </view>
     <view   class='mgr50'>
-      <view class='font48 bold'>260</view>
+      <view class='font48 bold '><input class='moneyInput' bindfocus="clearZero" bindinput='bindInput' type='digit' data-bindvalue='detailInfo.total_tail' value="{{detailInfo.total_tail}}"/></view>
       <view class='font24 grey'>总尾款</view>
     </view>
     <view>
-      <view class='font48 bold darkPink'>0</view>
+      <view class='font48 bold darkPink '><input class='moneyInput' bindfocus="clearZero" bindinput='bindInput' type='digit'  data-bindvalue='detailInfo.postage' value="{{detailInfo.postage}}"/></view>
       <view class='font24 grey'>邮费</view>
     </view>
   </view>
@@ -81,11 +92,17 @@
       </view>
       
     </view>
-    <view class='sureBtn'><text>确定</text></view>
+    <view class='sureBtn' catchtap='addNote'><text>确定</text></view>
   </view>
 </view>
-<i-modal visible="{{ editPriceVisible }}" bind:ok="setPrice" bind:cancel="hideEditPrice">
-   <input placeholder='类别' ></input>
-   <input placeholder='定金' type='digit'></input>
-   <input placeholder='尾款' type='digit'></input>
+<i-modal visible="{{ editPriceVisible }}" bind:ok="createNewItem" bind:cancel="hideEditPrice">
+  <view>
+    类别:<input class='inlineInput' data-bindvalue='detailInfo.newitem.item_name' bindfocus="clearZero" bindinput='bindInput' value="{{detailInfo.newitem.item_name}}"></input>
+  </view>
+  <view>
+    定金:<input class='inlineInput' data-bindvalue='detailInfo.newitem.earnest_money' bindfocus="clearZero" bindinput='bindInput' value="{{detailInfo.newitem.earnest_money}}" type='digit'></input>
+  </view>
+  <view>
+   尾款:<input class='inlineInput' data-bindvalue='detailInfo.newitem.tail_money' bindfocus="clearZero" bindinput='bindInput' value="{{detailInfo.newitem.tail_money}}" type='digit'></input>
+  </view>
 </i-modal>

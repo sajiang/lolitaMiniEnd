@@ -1,29 +1,31 @@
-// pages/showSetting/showSetting.js
+const util = require("../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checkBox:false,
-    checkBoxLine:true,
-    opName:true,
-    storeName:false,
-    money1:false,
-    money2:true,
-    transFee:false,
-    money1StartTime: false,
-    money1EndTime: false,
-    money2StartTime: true,
-    money2EndTime:false,
-    detail:false,
+    setting:{
+      checkbox_show: 1,
+      detailinfo_show: 1,
+      earnest_endtime_show: 1,
+      earnest_show: 1,
+      earnest_starttime_show: 1,
+      name_show: 1,
+      postage_show: 1,
+      storename_show: 1,
+      tail_endtime_show: 1,
+      tail_show: 1,
+      tail_starttime_show: 1,
+    }
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getSetting();
   },
 
   /**
@@ -61,22 +63,36 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  getSetting(){
+    util.requestWithToken({
+      url: 'Memo/ShowSettings',
+      success: (res) => {
+        if (res.code == 0) {
+          this.setData({
+            setting: res.data
+          });
+        }
+      }
+    });
   },
   onSwitchChange(event) {
+    let str = "setting." + event.currentTarget.dataset.name;
     this.setData({
-      [event.currentTarget.dataset.name]: event.detail.value
-    })
+      [str]: event.detail.value?1:0
+    });
+    util.requestWithToken({
+      url: 'Memo/ShowSettingsEidt',
+      data:{
+        ...this.data.setting
+      },
+      method:"POST",
+      message:"设置中...",
+      success: (res) => {
+        if (res.code == 0) {
+          
+        }
+      }
+    });
+    
   },
 })

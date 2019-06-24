@@ -5,7 +5,7 @@
     <i-icon type="setup" size="24" catchtap='naviToShowSetting'/> 
   </view>
   <view class='mgt40 flexBoxCenter spaceBetween'>
-    <text class='font24 bold '>总计：356554元</text>
+    <text class='font24 bold '>总计：{{total_sum}}元</text>
     <view>
       <text class='font24 bold darkPink' catchtap='showSort'>{{sortActions[sortType].label}}</text>
       <i-icon type="unfold" color="#ffa4ce"/>
@@ -15,28 +15,34 @@
 <view class='sepreateLine'></view>
 <view class='table' >
   <view class='tr nameColumn font20'>
-    <view class='td time'>时间</view>
-    <view class='td name'>名字</view>
-    <view class='td store'>店家</view>
-    <view class='td money'>定金</view>
-    <view class='td money'>尾款</view>
-    <view class='td transFee'>邮费</view>
+    <view class='td checkBox'></view>
+    <view class='td time' wx:if="{{settings.tail_starttime_show==1}}" >开始时间</view>
+    <view class='td time' wx:if="{{settings.tail_endtime_show==1}}" >结束时间</view>
+    <view class='td name' wx:if="{{settings.name_show==1}}">名字</view>
+    <view class='td store' wx:if="{{settings.storename_show==1}}">店家</view>
+    <view class='td money' wx:if="{{settings.earnest_show==1}}">定金</view>
+    <view class='td money' wx:if="{{settings.tail_show==1}}">尾款</view>
+    <view class='td transFee' wx:if="{{settings.postage_show==1}}">邮费</view>
   </view>
-  <view class='tr'>
-    <view class='td time'>03-10</view>
-    <view class='td name'>悦奈合作款</view>
-    <view class='td store'>仲夏物语</view>
-    <view class='td money'>160</view>
-    <view class='td money'>450</view>
-    <view class='td transFee'>10</view>
-  </view>
-  <view class='tr'>
-    <view class='td time'>03-10</view>
-    <view class='td name'>糖果纸</view>
-    <view class='td store'>南十字宇宙经销总部</view>
-    <view class='td money'>160</view>
-    <view class='td money'>450.6</view>
-    <view class='td transFee'>10</view>
+  <view wx:if="{{item.checkbox_checked==0||settings.checkbox_show==1}}" catchtap='changeCheckBox' data-idx="{{index}}" wx:for="{{noteList}}" wx:key="{{item.id}}">
+  <view class='tr flexBoxCenter {{item.checkbox_checked?"middleLine":"pink"}}' >
+    <view class='td checkBox' catchtap='changeCheckBox'><view class='icon'><icon wx:if="{{item.checkbox_checked}}" color="#ffa4ce" type="success_no_circle" size="20" /></view></view>
+      <view class='td time' wx:if="{{settings.tail_starttime_show==1}}">{{item.tail_starttime}}</view>
+      <view class='td time' wx:if="{{settings.tail_endtime_show==1}}">{{item.tail_endtime}}</view>
+      <view class='td name' wx:if="{{settings.name_show==1}}">{{item.details_name}}</view>
+      <view class='td store'  wx:if="{{settings.storename_show==1}}">{{item.store_name}}</view>
+      <view class='td money' wx:if="{{settings.earnest_show==1}}">{{item.total_deposit}}</view>
+      <view class='td money' wx:if="{{settings.tail_show==1}}">{{item.total_tail}}</view>
+      <view class='td transFee' wx:if="{{settings.postage_show==1}}">{{item.postage}}</view>
+    </view>
+    <view wx:if="{{settings.detailinfo_show}}" class='detailInfo darkPink'>
+      <view>
+        <view wx:for='{{item.items}}' wx:for-index="idx" wx:for-item="itemName" wx:if="{{itemName.reserve_num>0}}">
+          <text class='itemCount'>{{itemName.item_name}}×{{itemName.reserve_num}}</text>
+          <text class='detailPrice'>{{itemName.earnest_money}}+{{itemName.tail_money}}={{itemName.earnest_money+itemName.tail_money}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view >
 

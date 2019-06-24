@@ -1,18 +1,19 @@
-// pages/myCollection/myCollection.js
+const util = require("../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    pageIndex:1,
+    collectList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -26,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCollectList();
   },
 
   /**
@@ -62,5 +63,22 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getCollectList:function(){
+    util.requestWithToken({
+      url: 'Collect/GetList',
+      data: {
+        page: this.data.pageIndex,
+        pageSize: '5'
+      },
+      success: (res) => {
+        if (res.code == 0) {
+          this.setData({
+            collectList: res.data.pagedata,
+            pageIndex: ++this.data.pageIndex
+          });
+        }
+      }
+    });
   }
 })

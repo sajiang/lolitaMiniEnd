@@ -3,17 +3,17 @@
   <view class='font48'>我的收藏</view>
 </view>
 <view class='list'>
-  <view class='item flexBox'>
-    <image mode='aspectFill' class='pic' src='../../https/11.jpg'></image>
+  <view class='item flexBox' wx:for="{{collectList}}">
+    <image mode='aspectFill' class='pic' src='{{item.mainimagesurl}}'></image>
     <view class='flex1'>
-      <view class='font36 bold'>加百列的坟墓</view>
-      <view class='font30 grey mgt10'>狐步舞Foxtrot洋装店</view>
+      <view class='font36 bold'>{{item.detailsname}}</view>
+      <view class='font30 grey mgt10'>{{item.storename}}</view>
       <view class='flexBox'>
         <view class='flexBox bottom flex1'>
           <image class='icon' src='../../imgs/eye.png'></image>
-          <text class='font24 grey mgr30'>1334</text>
+          <text class='font24 grey mgr30'>{{item.readnum}}</text>
           <i-icon type="collection"  size="18" color='#999999'/>    
-          <text class='font24 grey'>13</text>
+          <text class='font24 grey'>{{item.collecnum}}</text>
         </view>
         <view class='starWapper'>
           <image class='star' src='../../imgs/star.png'></image>

@@ -34,6 +34,10 @@
 .underline{
   text-decoration: underline;
 }
+.moneyInput{
+  width: 130rpx;
+  border-bottom: 1px solid black;
+}
 .fixedBottom{
   position: fixed;
   bottom: 0;
@@ -69,4 +73,8 @@
   position: absolute;
   left: 143rpx;
   top: 52rpx;
+}
+.inlineInput{
+  display: inline-block;
+  width: 200rpx;
 }

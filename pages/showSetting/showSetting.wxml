@@ -1,48 +1,48 @@
 <view class='line'>
-  <view>选中框</view>
-  <i-switch value="{{checkBox}}" size="small" data-name='checkBox'  bind:change="onSwitchChange"></i-switch>
+  <view>展示已勾选</view>
+  <i-switch value="{{setting.checkbox_show}}" size="small" data-name='checkbox_show'  bind:change="onSwitchChange"></i-switch>
 </view>
-<view class='line' wx:if="{{checkBox}}">
+<!-- <view class='line' wx:if="{{checkBox}}">
   <view>选中后中划线</view>
-  <i-switch value="{{checkBoxLine}}" size="small" data-name='checkBoxLine'  bind:change="onSwitchChange"></i-switch>
-</view>
+  <i-switch value="{{setting.checkBoxLine}}" size="small" data-name='checkBoxLine'  bind:change="onSwitchChange"></i-switch>
+</view> -->
 <view class='line'>
   <view>裙子名字</view>
-<i-switch value="{{opName}}" size="small" data-name='opName'  bind:change="onSwitchChange"></i-switch>
+<i-switch value="{{setting.name_show}}" size="small" data-name='name_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>店家名字</view>
-  <i-switch value="{{storeName}}" size="small" data-name='storeName'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.storename_show}}" size="small" data-name='storename_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>定金</view>
-  <i-switch value="{{money1}}" size="small" data-name='money1'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.earnest_show}}" size="small" data-name='earnest_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>尾款</view>
-  <i-switch value="{{money2}}" size="small" data-name='money2'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.tail_show}}" size="small" data-name='tail_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>邮费</view>
-  <i-switch value="{{transFee}}" size="small" data-name='transFee'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.postage_show}}" size="small" data-name='postage_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>定金开始时间</view>
-  <i-switch value="{{money1StartTime}}" size="small" data-name='money1StartTime'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.earnest_starttime_show}}" size="small" data-name='earnest_starttime_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>定金结束时间</view>
-  <i-switch value="{{money1EndTime}}" size="small" data-name='money1EndTime'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.earnest_endtime_show}}" size="small" data-name='earnest_endtime_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>尾款开始时间</view>
-  <i-switch value="{{money2StartTime}}" size="small" data-name='money2StartTime'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.tail_starttime_show}}" size="small" data-name='tail_starttime_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>尾款结束时间</view>
-  <i-switch value="{{money2EndTime}}" size="small" data-name='money2EndTime'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.tail_endtime_show}}" size="small" data-name='tail_endtime_show'  bind:change="onSwitchChange"></i-switch>
 </view>
 <view class='line'>
   <view>详细预约信息</view>
-  <i-switch value="{{detail}}" size="small" data-name='detail'  bind:change="onSwitchChange"></i-switch>
+  <i-switch value="{{setting.detailinfo_show}}" size="small" data-name='detailinfo_show'  bind:change="onSwitchChange"></i-switch>
 </view>

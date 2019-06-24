@@ -14,26 +14,27 @@ Page({
     this.getList();
   },
   getList(){
-    wx.request({
-      url: util.url +'Product/List', 
+    util.requestWithToken({
+      url: 'Product/List', 
       data: {
         page: this.data.pageIndex,
         pageSize: '3'
       },
       success:(res)=> {
-        if(res.data.code==0){
-          let list = res.data.data.list;
+        if(res.code==0){
+          let list = res.data.list;
           for(let item of list){
             item.current=0;
           }
           this.setData({
+            memo_count: res.data.memo_count,
+            colect_count: res.data.colect_count,
             newList: this.data.newList.concat(list),
             pageIndex: ++this.data.pageIndex
           });
         }
       }
-    })
-    
+    });
   },
   preview(e){
     let idx=e.currentTarget.dataset.opIdx;
@@ -57,23 +58,52 @@ Page({
   collect(event){
     let isAuth=this.selectComponent("#isAuth");
     isAuth.checkAuth().then(()=>{
-      var str = `newList[${event.currentTarget.dataset.idx}].isCollect`;
-      this.setData({
-        [str]: !this.data.newList[event.currentTarget.dataset.idx].isCollect
+      util.requestWithToken({
+        url:"Collect/Create",
+        method:"POST",
+        message:"正在安排...",
+        data: event.currentTarget.dataset.id,
+        success:(res)=>{
+          if(res.code==0){
+            var str = `newList[${event.currentTarget.dataset.idx}].iscollect`;
+            var collecnum = `newList[${event.currentTarget.dataset.idx}].collecnum`;
+            this.setData({
+              [str]: !this.data.newList[event.currentTarget.dataset.idx].iscollect,
+              [collecnum]: this.data.newList[event.currentTarget.dataset.idx].iscollect == 0 ? (this.data.newList[event.currentTarget.dataset.idx].iscollect + 1) : (this.data.newList[event.currentTarget.dataset.idx].iscollect - 1),
+              colect_count: this.data.newList[event.currentTarget.dataset.idx].iscollect == 0 ? (this.data.colect_count + 1) : (this.data.colect_count - 1)
+            })
+          }
+        }
       })
+      
     });
   },
   note(event){
     let isAuth = this.selectComponent("#isAuth");
     isAuth.checkAuth().then(() => {
-      
-      var str = `newList[${event.currentTarget.dataset.idx}].isNote`;
-      this.setData({
-        [str]: !this.data.newList[event.currentTarget.dataset.idx].isNote
-      });
-      wx.navigateTo({
-        url: '../notifySetting/notifySetting',
-      })
+      var str = `newList[${event.currentTarget.dataset.idx}].isnote`;
+      if (this.data.newList[event.currentTarget.dataset.idx].isnote==1){
+        //取消备注
+        util.requestWithToken({
+          url: `Memo/Delete/${this.data.newList[event.currentTarget.dataset.idx].memoid}`,
+          method: "DELETE",
+          success: (res) => {
+            this.setData({
+              [str]: 0,
+              memo_count: --this.data.memo_count
+            });
+          }
+        })
+        
+      }else{
+        this.setData({
+          [str]: 1,
+          memo_count: ++this.data.memo_count
+        });
+        wx.navigateTo({
+          url: '../notifySetting/notifySetting?id=' + this.data.newList[event.currentTarget.dataset.idx].id,
+        })
+      }
     });
   },
   naviToNote() {

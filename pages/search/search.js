@@ -1,11 +1,25 @@
 // pages/search/search.js
+const util = require("../../utils/util.js")
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    keyWord:"",
+    searchType:[{
+      name:"标签"
+    }, {
+      name: "店名"
+    }, {
+      name: "名称"
+    }],
+    currentPage:1,
+    curTypeIdx:2,
+    typeShow:false,
+    searchList: [],
+    tagList: [],
+    maxPage:1,
   },
 
   /**
@@ -54,7 +68,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getOnePage();
   },
 
   /**
@@ -62,5 +76,76 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  showSelectType(){
+    this.setData({
+      typeShow:true,
+    })
+  },
+  changeType({ detail }){
+    this.setData({
+      curTypeIdx: detail.index,
+      typeShow:false,
+      searchList:[],
+      keyWord:"",
+    });
+  },
+  handleCancel(){
+    this.setData({
+      typeShow: false,
+    });
+  },
+  searchKeyword(e){
+    this.setData({
+      keyWord: e.detail.value
+    });
+    util.requestWithToken({
+      url: 'Product/Search',
+      data:{
+        type:this.data.curTypeIdx,
+        keyWord: e.detail.value
+      },
+      success: (res) => {
+        if (res.code == 0) {
+          this.setData({
+            searchList:res.data
+          })
+        }
+      }
+    });
+  },
+  getDetail({ currentTarget}){
+    this.setData({
+      keyWord: currentTarget.dataset.name,
+      currentPage: 1,
+      searchList: [],
+      tagList:[],
+      maxPage:1,
+    },()=>{
+      this.getOnePage();
+    });
+  },
+  getOnePage(){
+    if (this.data.maxPage<this.data.currentPage){
+      return;
+    }
+    util.requestWithToken({
+      url: 'Product/DetailsList',
+      data: {
+        type: this.data.curTypeIdx, //0标签 1店名
+        name: this.data.keyWord,
+        page: this.data.currentPage,
+        pageSize: 6
+      },
+      success: (res) => {
+        if (res.code == 0) {
+          this.setData({
+            tagList: this.data.tagList.concat(res.data.list),
+            currentPage: ++this.data.currentPage,
+            maxPage:res.data.pages
+          });
+        }
+      }
+    });
   }
 })

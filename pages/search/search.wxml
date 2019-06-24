@@ -1,4 +1,29 @@
-<view class='searchWrap flexBoxCenter'>
-  <image class='search' src='../../imgs/search.png'></image>
-  <input class='font30' placeholder-style="color:#999999" placeholder='输入名称/店名/标签'></input>
+<view class='searchPage'>
+  <view class='searchWrap flexBoxCenter'>
+    <view class='select' catchtap='showSelectType'>
+      {{searchType[curTypeIdx].name}}
+      <i-icon type="unfold" />
+    </view>
+    <input class='font30' bindinput="searchKeyword" value='{{keyWord}}' placeholder-style="color:#999999" placeholder='{{"输入"+searchType[curTypeIdx].name+"..."}}'></input>
+    <image class='search' src='../../imgs/search.png'></image>
+  </view>
+  <view class='searchList'>
+    <view wx:for="{{searchList}}" wx:key='{{item.id}}' class='searchItem flexBoxCenter' data-name='{{item.name}}' data-id='{{item.id}}' catchtap='getDetail'>
+      <view class='flex1'>{{item.name}}</view>
+      <i-icon type="enter" />
+    </view>
+  </view>
+  <view class='imgsList'>
+    <view class='imgCard'  wx:for="{{tagList}}" wx:key='{{item.id}}'>
+      <view>
+        <image mode='aspectFill' src='{{item.images_url}}'></image>
+      </view>
+      <view class='imgInfo'>
+        <view class='darkPink font24'>{{item.name}}</view>
+        <view class='lightPink font24'>{{item.store_name}}</view>
+      </view>
+    </view>
+    <view class='center'>已经到底啦</view>
+  </view>
+  <i-action-sheet visible="{{ typeShow }}" show-cancel bind:cancel="handleCancel" actions="{{ searchType }}" bind:click="changeType"></i-action-sheet>
 </view>

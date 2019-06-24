@@ -24,19 +24,49 @@
   padding: 15rpx;
   display: inline-block;
   white-space: normal;
+  flex-shrink:0;
+}
+.checkBox{
+  width: 40rpx;
+}
+.checkBox .icon{
+  border: 1px solid grey;
+  width: 40rpx;
+  height: 40rpx;
+}
+.middleLine{
+  text-decoration: line-through;
 }
 .time{
   width: 120rpx;
 }
 .name{
   width: 150rpx;
+  margin-right: 10rpx;
 }
 .store{
-  width: 150rpx;
+  width: 200rpx;
 }
 .money{
   width: 80rpx;
 }
 .transFee{
   width: 70rpx;
+}
+
+.detailInfo{
+  font-size: 22rpx;
+  margin-right: 50rpx;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.detailInfo .itemCount{
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+}
+.detailInfo .detailPrice{
+  display: inline-block;
+  width: 200rpx;
+  margin-left: 10px;
 }

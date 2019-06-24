@@ -3,13 +3,13 @@
   <view class='flexBox top'>
     <view catchtap='naviToMyCollection' class='naviBtn'>
       <view ><image class='icon' src='../../imgs/star.png'></image></view>
-      <view class='font48 bold'>11</view>
+      <view class='font48 bold'>{{colect_count}}</view>
       <view class='font24 grey'>收藏</view>
     </view>
     <view  catchtap='naviToNote' class='flex1'>
       <view>
         <view><image class='icon' src='../../imgs/note.png'></image></view>
-        <view class='font48 bold'>13</view>
+        <view class='font48 bold'>{{memo_count}}</view>
         <view class='font24 grey'>备忘</view>
       </view>
     </view>
@@ -51,8 +51,8 @@
           </view>
         </view>
         <view class='operation'  >
-          <image class='midIcon' data-idx='{{index}}' catchtap='collect' src="{{op.isCollect?'../../imgs/starOn.png':'../../imgs/starOff.png'}}"></image>
-          <image class='midIcon' data-idx='{{index}}' catchtap='note' src="{{op.isNote?'../../imgs/noteOn.png':'../../imgs/noteOff.png'}}"></image>
+          <image class='midIcon' data-id='{{op.id}}' data-idx='{{index}}' catchtap='collect' src="{{op.iscollect?'../../imgs/starOn.png':'../../imgs/starOff.png'}}"></image>
+          <image class='midIcon' data-idx='{{index}}' catchtap='note' src="{{op.isnote?'../../imgs/noteOn.png':'../../imgs/noteOff.png'}}"></image>
         </view>
       </view>
     </view>

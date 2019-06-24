@@ -1,6 +1,13 @@
+.searchPage{
+  background: #EEE;
+  padding-top: 20rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
 .searchWrap{
-  margin: 30rpx 60rpx;
-  padding: 0 50rpx;
+  margin: 0rpx 60rpx 0 60rpx;
+  padding: 0 40rpx;
   background-color: #f7e6eb;
   height: 98rpx;
   border-radius: 49rpx;
@@ -8,5 +15,42 @@
 .searchWrap .search{
   width: 46rpx;
   height: 46rpx;
-  margin-right: 36rpx;
+}
+.searchWrap .select{
+  font-size: 28rpx;
+  border-right:2rpx solid #CCC;
+  height: 100%;
+  line-height: 98rpx;
+  padding-right: 18rpx;
+  margin-right: 18rpx;
+}
+.searchList{
+  margin: 0rpx 60rpx;
+  font-size: 30rpx;
+  background: white;
+}
+.searchItem{
+  padding: 15rpx;
+  border-bottom: 1px solid #CCC;
+}
+.imgsList{
+  margin: 20rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  background: #EEE;
+}
+.imgCard{
+  width: 49%;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+  background: white;
+}
+.imgCard image{
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+.imgCard .imgInfo{
+  margin:  10rpx;
 }

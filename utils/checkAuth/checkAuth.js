@@ -22,9 +22,9 @@ Component({
    * 组件的方法列表
    */
   ready: function () {
-    if (app.globalData.userInfo) {
+    if (wx.getStorageSync("userInfo")) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        userInfo: wx.getStorageSync("userInfo"),
         hasUserInfo: true
       })
     } else if (this.data.canIUse) {
@@ -40,7 +40,8 @@ Component({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          wx.getStorageSync("userInfo",res.userInfo)
+          //app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
